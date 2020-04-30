@@ -1,0 +1,4 @@
+Username: elastic
+pass: changeme
+service filebeat restart
+/etc/filebeat --> filebeat.yml --> cambiar ip --> DOCKER

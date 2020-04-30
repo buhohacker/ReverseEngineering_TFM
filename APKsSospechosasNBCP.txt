@@ -1,0 +1,16 @@
+ANÁLISIS DATOS CSV
+------------------------------------------------------------------
+Libreria setup:true -->   trustmanager --> intercept:(no hay intercept)
+APK --> com.ea.gp.fifaultimate, com.discord, com.cyworld.camera, 
+	com.bestcoolfungames.antsmasher
+
+
+Libreria setup:true -->   Android WebViewClient --> intercept:(no hay intercept)
+APK -->  com.bestcoolfungames.antsmasher
+	
+
+
+NOTAS
+----------------------------------------------------------------------
+com.discord --> he probado a ejecutar traffic.py y sale en el log que si
+es capaz de hacer intercept:true de trustmanager

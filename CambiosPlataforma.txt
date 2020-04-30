@@ -1,0 +1,23 @@
+t = Traffic("192.168.1.201", "4000", "aee4ad920306", "/privapp/apk/com.netflix.Speedtest.apk", "Label_Tuning")
+print(t.configure())
+print(t.upload())
+print(t.phaseOne(120,False, False))
+print(t.phaseTwo(120, True))
+print(t.analysis())
+print(t.result())
+print(t.sanitize())
+
+
+En el fichero /app/scripts/start.py agrega estas líneas a partir de la línea 97 (luego de la sentencia sys.stdout = f ):
+ # Connecting to ip device
+    tools.call_sh("adb connect {}".format(device))
+    tools.call_sh("adb devices")
+En el fichero /app/intercept/pinning/fridactl.py modifica la línea 77 del método get_device del siguiente modo:
+if d.id == "{}:5555".format(ip):
+
+Fichero scripts/start.py reemplazando las líneas 99 y 100 por este código:
+# Connecting to ip device
+    tools.call_sh("adb connect {}".format(device))
+    tools.call_sh("adb root")
+    tools.call_sh("adb connect {}".format(device))
+    #checking if device is connected

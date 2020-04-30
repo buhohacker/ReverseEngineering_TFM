@@ -1,0 +1,25 @@
+1)Instalar apks a mano
+Estas son bundled APKs (divididas en trozos) entonces necesitas instalarlo 
+usado el comando adb install-multiple file1, file2, ...
+
+2) agrega este método (en traffic.py):
+def configure2(self, name):
+        data = {}
+        try:
+            res = requests.get('http://{}:{}/config'.format(self.server, self.port), params={'ip': self.device, 'name': name, 'testing_label': self.testing_label})
+            data = json.loads(res.text)
+        except Exception as e:
+            data['Ok'] = False
+            data['Msg'] = str(e)
+        finally:
+            return (data['Ok'], data['Msg'])
+
+3) Luego cambia las peticiones que haces al servidor de control REST así:
+    print(t.configure2(app))
+    print(t.phaseOne(60, False, False))
+    print(t.phaseTwo(10, False))
+    print(t.analysis())
+    print(t.result())
+
+es decir eliminamos el config() y el upload() porque tú ya lo instalarás manualmente, y mediante config2 solamente envías el package name de la app (ojo es el package name no la ruta del APK)
+Este enfoque solo servirá para los bundle APK para el resto de APKs se mantiene el enfoque anteriro
